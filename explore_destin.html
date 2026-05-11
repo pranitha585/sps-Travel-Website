@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Destinations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9933a;
+            --gold-light: #f0c96e;
+            --dark: #0d1b2a;
+            --card-bg: rgba(255, 255, 255, 0.10);
+            --card-border: rgba(255, 255, 255, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10, 22, 40, 0.72), rgba(10, 22, 40, 0.72)),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+            color: white;
+            padding: 0 0 60px;
+        }
+
+        /* ── Back Button ── */
+        .back-btn-wrapper {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            font-family: 'Jost', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            background: rgba(255, 255, 255, 0.651);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateX(-4px);
+        }
+
+        .back-btn::before {
+            content: '←';
+            font-size: 16px;
+        }
+
+        /* ── Page Hero ── */
+        .page-hero {
+            text-align: center;
+            padding: 90px 20px 50px;
+        }
+
+        .page-hero .tagline {
+            font-family: 'Jost', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 14px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .page-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 1px;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .page-hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            margin: 22px auto 0;
+            border-radius: 2px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        /* ── Cards Grid ── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.15s; }
+        .card:nth-child(2) { animation-delay: 0.25s; }
+        .card:nth-child(3) { animation-delay: 0.35s; }
+        .card:nth-child(4) { animation-delay: 0.45s; }
+        .card:nth-child(5) { animation-delay: 0.55s; }
+        .card:nth-child(6) { animation-delay: 0.65s; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            border-color: rgba(201, 147, 58, 0.5);
+        }
+
+        /* ── Card Image ── */
+        .card-img-wrap {
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .card-img-wrap .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 22, 40, 0.6));
+        }
+
+        /* ── Card Label (title on image) ── */
+        .card-label {
+            position: absolute;
+            bottom: 14px;
+            left: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Card Footer ── */
+        .card-footer {
+            padding: 16px 18px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* ── Explore Button ── */
+        .explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 24px;
+            font-family: 'Jost', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(201, 147, 58, 0.45);
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn::after {
+            content: '→';
+            font-size: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: 0 6px 24px rgba(201, 147, 58, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .explore-btn:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-btn-wrapper">
+        <a href="HomePage.html" class="back-btn">Back</a>
+    </div>
+
+    <div class="page-hero">
+        <p class="tagline">Explore India</p>
+        <h1>Find the <em>Joy</em><br>in Journey</h1>
+        <div class="hero-divider"></div>
+    </div>
+
+    <div class="cards-grid">
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://www.anubhavvacations.in/blog/wp-content/uploads/2024/11/picturesque-hill-stations-south-india-2025.webp" alt="Hill Stations">
+                <div class="img-overlay"></div>
+                <span class="card-label">Hill Stations</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('hillstation/hillstation_places.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Ranganathaswamy_temple_tiruchirappalli.jpg/1280px-Ranganathaswamy_temple_tiruchirappalli.jpg" alt="Temples">
+                <div class="img-overlay"></div>
+                <span class="card-label">Temples</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('temples/temple_places.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://www.kalitravel.net/blog/wp-content/uploads/delhi-itinerary-india-gate-sunset-new-delhi.webp" alt="Historical Places">
+                <div class="img-overlay"></div>
+                <span class="card-label">Historical Places</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('historic_places/historic_places.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://www.shutterstock.com/shutterstock/videos/3803729689/thumb/1.jpg?ip=x480" alt="Snow Regions">
+                <div class="img-overlay"></div>
+                <span class="card-label">Snow Regions</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('snow/snow_places.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://i.guim.co.uk/img/media/fecefbb9c79273dea359f7c77ca378f607489764/0_0_1800_1080/500.jpg?quality=85&auto=format&fit=max&s=d56d3f607f0f5767669623781b2c656c" alt="Beaches">
+                <div class="img-overlay"></div>
+                <span class="card-label">Beaches</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('beach_places/beach_places.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrap">
+                <img src="https://a-ca.storyblok.com/f/2000158/1700x1133/ff799537a0/season-and-climate-sutherland-falls-revelstoke.jpg/m/1080x1080" alt="Waterfalls">
+                <div class="img-overlay"></div>
+                <span class="card-label">Waterfalls</span>
+            </div>
+            <div class="card-footer">
+                <button class="explore-btn" onclick="window.open('waterfalls/waterfall_places.html','_self')">Explore</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

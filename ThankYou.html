@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | SPS Travel</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ocean: #1a6b8a;
+            --ocean-deep: #0e4460;
+            --gold: #c9a84c;
+            --sand-light: #faf5ee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: 'DM Sans', sans-serif;
+            color: #0d1b2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80")
+                center / cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 25% 0%, rgba(26,107,138,0.55), transparent 60%),
+                radial-gradient(ellipse at 75% 100%, rgba(14,68,96,0.65), transparent 60%),
+                linear-gradient(170deg, #0e2c3d 0%, #0a1e2b 100%);
+            z-index: 0;
+        }
+
+        .wave-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wave-bg svg {
+            display: block;
+            opacity: 0.06;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            width: min(480px, 100%);
+            padding: 48px 44px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.38);
+            text-align: center;
+            animation: popIn 0.65s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88) translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .icon-wrap {
+            position: relative;
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 22px;
+        }
+
+        .icon-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(26,107,138,0.2);
+            animation: ringPulse 2s ease-out 0.4s infinite;
+        }
+
+        @keyframes ringPulse {
+            from {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            to {
+                transform: scale(1.55);
+                opacity: 0;
+            }
+        }
+
+        .icon {
+            position: relative;
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 32px;
+            box-shadow: 0 10px 28px rgba(14,68,96,0.35);
+        }
+
+        .icon i {
+            animation: checkPop 0.5s 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes checkPop {
+            from {
+                opacity: 0;
+                transform: scale(0.4) rotate(-20deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--ocean-deep);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .subtitle {
+            color: #6a7a8a;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            background: var(--sand-light);
+            border: 1.5px solid rgba(26,107,138,0.1);
+            font-size: 0.88rem;
+            color: #3a4a5a;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.35s; }
+        .step:nth-child(2) { animation-delay: 0.48s; }
+        .step:nth-child(3) { animation-delay: 0.61s; }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.93rem;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(14,68,96,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(14,68,96,0.45);
+        }
+
+        .footer-note {
+            margin-top: 18px;
+            font-size: 0.78rem;
+            color: #aab;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wave-bg">
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" width="100%">
+            <path d="M0,90 C360,170 1080,10 1440,90 L1440,180 L0,180 Z" fill="white"/>
+        </svg>
+    </div>
+
+    <main>
+        <div class="icon-wrap">
+            <div class="icon-ring"></div>
+            <div class="icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+
+        <h1>You're all <em>set!</em></h1>
+
+        <p class="subtitle">
+            Your trip request has been received. Our travel team will review your details and reach out shortly.
+        </p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-user-tie"></i></div>
+                A travel expert will contact you within 24 hrs
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-map"></i></div>
+                Your custom itinerary will be ready soon
+            </div>
+        </div>
+
+        <a class="btn" href="HomePage.html">
+            <i class="fa-solid fa-house"></i>
+            Back to Home
+        </a>
+
+        <p class="footer-note">
+            <i class="fa-solid fa-lock"></i>
+            Your information is safe with us.
+        </p>
+    </main>
+</body>
+</html>

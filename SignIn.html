@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPS Travel – Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background:
+                linear-gradient(rgba(41,47,54,0.6), rgba(29,34,42,0.7)),
+                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+                center / cover no-repeat fixed;
+            color: #292f36;
+        }
+
+        .slider-wrap {
+            width: min(880px, 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        .slider-track {
+            display: flex;
+            /*width: 100%;*/
+            transition: transform 0.65s cubic-bezier(.77,0,.18,1);
+        }
+
+        .slider-wrap.active .slider-track {
+            transform: translateX(-100%);
+        }
+
+        .panel {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-side {
+            padding: 40px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .info-side {
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background:
+                linear-gradient(135deg, rgba(154,128,203,0.92), rgba(78,205,196,0.88)),
+                url("https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=900&q=80")
+                center / cover no-repeat;
+            color: #fff;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            color: #9a80cb;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .brand i { font-size: 24px; }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .message {
+            min-height: 18px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #d43d51;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .input-box label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 5px;
+        }
+        .input-box input {
+            width: 100%;
+            height: 44px;
+            padding: 0 40px 0 14px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            background: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #292f36;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .input-box input:focus {
+            border-color: #9a80cb;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(154,128,203,0.14);
+        }
+        .input-box i {
+            position: absolute;
+            right: 12px;
+            bottom: 11px;
+            font-size: 20px;
+            color: #9a80cb;
+            pointer-events: none;
+        }
+
+        .btn {
+            width: 100%;
+            height: 44px;
+            margin-top: 6px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #9a80cb, #4ecdc4);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(78,205,196,0.3);
+        }
+
+        .switch-link {
+            margin-top: 14px;
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+        }
+        .switch-link a {
+            color: #9a80cb;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .switch-link a:hover { text-decoration: underline; }
+
+        .info-card span {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.22);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .info-card h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            color: #fff;
+        }
+        .info-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.88);
+        }
+
+        @media (max-width: 640px) {
+            .panel { grid-template-columns: 1fr; }
+            .info-side { display: none; }
+            .form-side { padding: 30px 22px; }
+        }
+
+        .switch-link button {
+            background: none;
+            border: none;
+            color: #9a80cb;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+        }   
+
+        .switch-link button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-wrap" id="sliderWrap">
+    <div class="slider-track">
+
+        <!-- LOGIN -->
+        <div class="panel">
+            <div class="form-side">
+                <div class="brand"><i class="bx bxs-plane-alt"></i> SPS Travel</div>
+                <h1>Login</h1>
+                <p class="subtitle">Welcome back. Enter your details to continue.</p>
+                <p class="message" id="loginMessage"></p>
+                <form id="loginForm">
+                    <div class="input-box">
+                        <label for="loginName">Username</label>
+                        <input type="text" id="loginName" placeholder="Enter username" required>
+                        <i class="bx bxs-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter password" required>
+                        <i class="bx bxs-lock-alt"></i>
+                    </div>
+                    <button class="btn" type="submit">Login</button>
+                </form>
+                <p class="switch-link">No account?<button type="button" id="showRegister">Sign up</button></p>
+            </div>
+            <div class="info-side">
+                <div class="info-card">
+                    <span>Start your journey</span>
+                    <h2>Welcome Back!</h2>
+                    <p>Travel the world, discover beautiful places, and plan your next adventure with SPS.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="panel">
+            <div class="info-side">
+                <div class="info-card">
+                    <span>Join SPS Travel</span>
+                    <h2>Create Account</h2>
+                    <p>Sign up once and your name will appear on the homepage whenever you visit.</p>
+                </div>
+            </div>
+            <div class="form-side">
+                <div class="brand"><i class="bx bxs-map"></i> SPS Travel</div>
+                <h1>Register</h1>
+                <p class="subtitle">Create your account to get started.</p>
+                <p class="message" id="registerMessage"></p>
+                <form id="registerForm">
+                    <div class="input-box">
+                        <label for="registerName">Username</label>
+                        <input type="text" id="registerName" placeholder="Choose a username" required>
+                        <i class="bx bxs-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                        <i class="bx bxs-envelope"></i>
+                    </div>
+                    <div class="input-box">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" placeholder="Create a password" minlength="4" required>
+                        <i class="bx bxs-lock-alt"></i>
+                    </div>
+                    <button class="btn" type="submit">Register</button>
+                </form>
+                <p class="switch-link">Have an account?<button type="button" id="showLogin">Sign in</button></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const wrap         = document.getElementById("sliderWrap");
+    const showRegister = document.getElementById("showRegister");
+    const showLogin    = document.getElementById("showLogin");
+    const loginForm    = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    showRegister.addEventListener("click", e => { e.preventDefault(); wrap.classList.add("active"); });
+    showLogin.addEventListener("click",    e => { e.preventDefault(); wrap.classList.remove("active"); });
+
+    registerForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const name     = document.getElementById("registerName").value.trim();
+        const email    = document.getElementById("registerEmail").value.trim();
+        const password = document.getElementById("registerPassword").value.trim();
+        const msg      = document.getElementById("registerMessage");
+        if (!name || !email || !password) { msg.textContent = "Please fill all fields."; return; }
+        localStorage.setItem("spsUser", JSON.stringify({ name, email, password, loggedIn: true }));
+        window.location.href = "HomePage.html";
+    });
+
+    loginForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const name      = document.getElementById("loginName").value.trim();
+        const password  = document.getElementById("loginPassword").value.trim();
+        const msg       = document.getElementById("loginMessage");
+        const savedUser = JSON.parse(localStorage.getItem("spsUser"));
+        if (!savedUser) {
+            msg.textContent = "No account found. Please sign up first.";
+            wrap.classList.add("active");
+            return;
+        }
+        if (name === savedUser.name && password === savedUser.password) {
+            savedUser.loggedIn = true;
+            localStorage.setItem("spsUser", JSON.stringify(savedUser));
+            window.location.href = "HomePage.html";
+        } else {
+            msg.textContent = "Username or password is incorrect.";
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waterfalls</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image:
+                linear-gradient(rgba(0, 30, 45, 0.55), rgba(0, 40, 55, 0.65)),
+                url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            font-family: sans-serif;
+            min-height: 100vh;
+        }
+
+        .back-btn-wrapper {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateX(-3px);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 64px 20px 10px;
+        }
+
+        .page-header h2 {
+            font-size: 46px;
+            letter-spacing: 6px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            font-family: Georgia, serif;
+            color: #ffffff;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent);
+            margin: 12px auto 0;
+        }
+
+        .page-description {
+            text-align: center;
+            font-size: 18px;
+            font-family: Georgia, serif;
+            font-weight: lighter;
+            letter-spacing: 0.5px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 760px;
+            margin: 20px auto 40px;
+            padding: 0 20px;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            padding: 0 40px 60px;
+        }
+
+        .card {
+            width: 370px;
+            height: 400px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 20px rgba(100, 200, 255, 0.2);
+        }
+
+        .card:hover .card-body {
+            right: 0;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .card-body {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: -100%;
+            position: absolute;
+            background: rgba(0, 45, 65, 0.88);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: right 0.5s ease;
+        }
+
+        .card-title {
+            text-transform: uppercase;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: Georgia, serif;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            color: #7dd8f0;
+        }
+
+        .card-sub-title {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(125, 216, 240, 0.75);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .card-info {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(220, 240, 255, 0.9);
+            margin-bottom: 22px;
+        }
+
+        .card-btn {
+            color: #003850;
+            background: #7dd8f0;
+            padding: 10px 20px;
+            width: fit-content;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-btn:hover {
+            background: #a8e8f8;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-btn-wrapper">
+        <a href="../explore_destin.html" class="back-btn">&#8592; Back</a>
+    </div>
+
+    <div class="page-header">
+        <h2>WATERFALLS</h2>
+        <div class="divider"></div>
+    </div>
+
+    <p class="page-description">
+        Waterfalls are natural formations where water plunges from a height, creating breathtaking landscapes and soothing sounds.
+        They vary in size and shape, with many serving as popular tourist destinations and sources of hydroelectric power.
+        Here are some stunning waterfalls across India that you can visit:
+    </p>
+
+    <div class="cards-grid">
+
+        <div class="card">
+            <img src="https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-121561122/121561122.jpg" class="card-img" alt="Dudhsagar Falls">
+            <div class="card-body">
+                <h1 class="card-title">DUDHSAGAR</h1>
+                <p class="card-sub-title">Goa</p>
+                <p class="card-info">Dudhsagar Falls, meaning "Sea of Milk," is a breathtaking four-tiered waterfall on the Mandovi River in Goa, cascading from a height of 310 meters. Surrounded by lush greenery, it's a spectacular sight, especially during the monsoon season.</p>
+                <button class="card-btn" onclick="window.open('dudhsagar_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://static.where-e.com/India/Madhya_Pradesh/Rewa_Division/Chachai-Waterfall-Sirmour_29327fcbdd4e84ed13e43325185ddfa3.jpg" class="card-img" alt="Chachai Falls">
+            <div class="card-body">
+                <h1 class="card-title">CHACHAI</h1>
+                <p class="card-sub-title">Madhya Pradesh</p>
+                <p class="card-info">Chachai Falls, located in Madhya Pradesh, is one of India's highest waterfalls, plunging from a height of about 130 meters. Formed by the Bihad River, it's a stunning natural wonder, especially during the monsoon season.</p>
+                <button class="card-btn" onclick="window.open('chachai_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://hblimg.mmtcdn.com/content/hubble/img/waterfallstiod/mmt/activities/m_Waterfalls_Jog_Waterfalls_Karnataka_p_640_640.jpg" class="card-img" alt="Jog Falls">
+            <div class="card-body">
+                <h1 class="card-title">JOG FALLS</h1>
+                <p class="card-sub-title">Karnataka</p>
+                <p class="card-info">Jog Falls, located in Karnataka, is one of India's highest waterfalls, plunging from about 253 meters. Created by the Sharavathi River, it transforms into a spectacular sight during the monsoon season.</p>
+                <button class="card-btn" onclick="window.open('jog_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://c.ndtvimg.com/gws/ms/this-is-the-highest-waterfall-in-india/assets/5.jpeg?1744697646" class="card-img" alt="Kunchikal Falls">
+            <div class="card-body">
+                <h1 class="card-title">KUNCHIKAL</h1>
+                <p class="card-sub-title">Karnataka</p>
+                <p class="card-info">Kunchikal Falls, located in Karnataka, is India's highest waterfall, with a total height of about 455 meters. Fed by the Varahi River, it cascades through the Western Ghats, offering a spectacular view amidst lush greenery.</p>
+                <button class="card-btn" onclick="window.open('kunchikaal_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Hogenakkal_Falls_Close.jpg" class="card-img" alt="Hogenakkal Falls">
+            <div class="card-body">
+                <h1 class="card-title">HOGENAKKAL</h1>
+                <p class="card-sub-title">Tamil Nadu</p>
+                <p class="card-info">Hogenakkal Falls, located on the Kaveri River in Tamil Nadu, is often called the "Niagara of India" for its stunning beauty. The cascading waters, surrounded by rocky terrain, make it a mesmerizing destination, especially for coracle rides.</p>
+                <button class="card-btn" onclick="window.open('hogenakkal_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/85/2e/29/pc-ramanarayanan-kallidai.jpg?w=1200&h=-1&s=1" class="card-img" alt="Courtallam Falls">
+            <div class="card-body">
+                <h1 class="card-title">COURTALLAM</h1>
+                <p class="card-sub-title">Tamil Nadu</p>
+                <p class="card-info">Courtallam Falls, located in Tamil Nadu, is famous for its numerous cascading waterfalls, often called the "Spa of South India." The medicinal properties of the water, combined with the scenic beauty, make it a popular tourist destination.</p>
+                <button class="card-btn" onclick="window.open('courtallam_waterfall.html','_self')">Explore</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

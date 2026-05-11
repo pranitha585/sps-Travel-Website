@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --ink: #0d1b2a;
+            --ocean: #1a6b8a;
+            --ocean-deep: #0e4460;
+            --coral: #e07b54;
+            --gold: #c9a84c;
+            --border: rgba(26, 107, 138, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 32px 16px;
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(rgba(10, 30, 43, 0.78), rgba(10, 30, 43, 0.82)),
+                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+                center / cover fixed no-repeat;
+            color: var(--ink);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: auto;
+        }
+
+        .header {
+            margin-bottom: 28px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+        }
+
+        .header span {
+            color: var(--gold);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        form {
+            padding: 36px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 26px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-of-type {
+            border-bottom: 0;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            color: var(--ocean-deep);
+            font-size: 1.25rem;
+        }
+
+        .section h2 i {
+            margin-right: 8px;
+            color: var(--ocean);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #3a4a5a;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: #faf5ee;
+            color: var(--ink);
+            font-size: 0.95rem;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--ocean);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 107, 138, 0.12);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .choices label,
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .choices input,
+        .check-row input {
+            width: auto;
+        }
+
+        .check-row {
+            margin-bottom: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #faf5ee;
+        }
+
+        .check-row a {
+            color: var(--ocean);
+            font-weight: 700;
+        }
+
+        .error {
+            min-height: 16px;
+            margin-top: 5px;
+            color: #c0392b;
+            font-size: 0.8rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 13px 28px;
+            border: 0;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #faf5ee;
+            color: #3a4a5a;
+            border: 1.5px solid var(--border);
+        }
+
+        @media (max-width: 680px) {
+            form {
+                padding: 24px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .actions {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Plan Your <span>Dream</span> Trip</h1>
+            <p>Tell us what you're looking for and we'll craft the perfect itinerary.</p>
+        </div>
+
+        <form id="tripForm">
+            <div class="section">
+                <h2><i class="fa-solid fa-user"></i>Personal Information</h2>
+
+                <div class="group">
+                    <label for="fullName">Full Name *</label>
+                    <input id="fullName" type="text" placeholder="Enter your full name">
+                    <p class="error" id="fullNameError"></p>
+                </div>
+
+                <div class="row">
+                    <div class="group">
+                        <label for="email">Email *</label>
+                        <input id="email" type="email" placeholder="you@example.com">
+                        <p class="error" id="emailError"></p>
+                    </div>
+
+                    <div class="group">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" type="tel" placeholder="000-000-0000">
+                        <p class="error" id="phoneError"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fa-solid fa-map-marker-alt"></i>Trip Details</h2>
+
+                <div class="row">
+                    <div class="group">
+                        <label for="tripType">Trip Type *</label>
+                        <select id="tripType">
+                            <option value="">Select trip type</option>
+                            <option>Leisure/Vacation</option>
+                            <option>Business</option>
+                            <option>Honeymoon</option>
+                            <option>Adventure</option>
+                            <option>Family</option>
+                        </select>
+                        <p class="error" id="tripTypeError"></p>
+                    </div>
+
+                    <div class="group">
+                        <label for="travelers">Travelers *</label>
+                        <input id="travelers" type="number" min="1" max="20" placeholder="1">
+                        <p class="error" id="travelersError"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="group">
+                        <label for="departureDate">Departure Date *</label>
+                        <input id="departureDate" type="date">
+                        <p class="error" id="departureDateError"></p>
+                    </div>
+
+                    <div class="group">
+                        <label for="returnDate">Return Date *</label>
+                        <input id="returnDate" type="date">
+                        <p class="error" id="returnDateError"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fa-solid fa-sliders"></i>Preferences</h2>
+
+                <div class="group">
+                    <label>Accommodation Type *</label>
+                    <div class="choices">
+                        <label><input type="radio" name="accommodation"> Hotel</label>
+                        <label><input type="radio" name="accommodation"> Resort</label>
+                        <label><input type="radio" name="accommodation"> Apartment</label>
+                        <label><input type="radio" name="accommodation"> Hostel</label>
+                    </div>
+                    <p class="error" id="accommodationError"></p>
+                </div>
+
+                <div class="group">
+                    <label>Interests</label>
+                    <div class="choices">
+                        <label><input type="checkbox"> Sightseeing</label>
+                        <label><input type="checkbox"> Food</label>
+                        <label><input type="checkbox"> Shopping</label>
+                        <label><input type="checkbox"> Nature</label>
+                        <label><input type="checkbox"> Culture</label>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label for="budget">Budget Range *</label>
+                    <select id="budget">
+                        <option value="">Select budget range</option>
+                        <option>Economy</option>
+                        <option>Mid-Range</option>
+                        <option>Luxury</option>
+                        <option>Premium</option>
+                    </select>
+                    <p class="error" id="budgetError"></p>
+                </div>
+
+                <div class="group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" placeholder="Dietary restrictions, accessibility needs, special occasions..."></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <label class="check-row">
+                    <input id="newsletter" type="checkbox" checked>
+                    Subscribe to exclusive travel tips and deals
+                </label>
+
+                <label class="check-row">
+                    <input id="terms" type="checkbox">
+                    I agree to the <a href="Terms&Conditions.html">Terms & Conditions</a> *
+                </label>
+                <p class="error" id="termsError"></p>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-secondary" type="reset">Reset</button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Trip Request
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("tripForm");
+
+        const requiredFields = [
+            ["fullName", "Full name is required"],
+            ["email", "Email is required"],
+            ["tripType", "Trip type is required"],
+            ["travelers", "Number of travelers is required"],
+            ["departureDate", "Departure date is required"],
+            ["returnDate", "Return date is required"],
+            ["budget", "Budget is required"]
+        ];
+
+        function setError(id, message = "") {
+            document.getElementById(id + "Error").textContent = message;
+        }
+
+        function clearErrors() {
+            document.querySelectorAll(".error").forEach(error => error.textContent = "");
+        }
+
+        function validateForm() {
+            clearErrors();
+            let valid = true;
+
+            requiredFields.forEach(([id, message]) => {
+                const field = document.getElementById(id);
+
+                if (!field.value.trim()) {
+                    setError(id, message);
+                    valid = false;
+                }
+            });
+
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const travelers = Number(document.getElementById("travelers").value);
+            const departure = document.getElementById("departureDate").value;
+            const returnDate = document.getElementById("returnDate").value;
+            const today = new Date().toISOString().split("T")[0];
+
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                setError("email", "Enter a valid email");
+                valid = false;
+            }
+
+            if (phone && !/^[\d\s()+-]{10,20}$/.test(phone)) {
+                setError("phone", "Enter a valid phone number");
+                valid = false;
+            }
+
+            if (travelers && (travelers < 1 || travelers > 20)) {
+                setError("travelers", "Travelers must be between 1 and 20");
+                valid = false;
+            }
+
+            if (departure && departure < today) {
+                setError("departureDate", "Departure cannot be in the past");
+                valid = false;
+            }
+
+            if (departure && returnDate && returnDate <= departure) {
+                setError("returnDate", "Return must be after departure");
+                valid = false;
+            }
+
+            if (!document.querySelector('input[name="accommodation"]:checked')) {
+                setError("accommodation", "Choose accommodation type");
+                valid = false;
+            }
+
+            if (!document.getElementById("terms").checked) {
+                setError("terms", "Please accept the terms");
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (validateForm()) {
+                form.reset();
+                window.location.href = "ThankYou.html";
+            }
+        });
+    </script>
+</body>
+</html>

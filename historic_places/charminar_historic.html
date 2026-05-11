@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charminar - The Jewel of Hyderabad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D4A76A;
+            --accent: #E6C229;
+            --light-bg: #FFF8E7;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: var(--light-bg);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Charminar-Pride_of_Hyderabad.jpg/1280px-Charminar-Pride_of_Hyderabad.jpg') center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 6px;
+            margin-top: 36px;
+        }
+
+        p, ul { font-size: 1.05rem; }
+
+        .highlight {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .quote {
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-align: center;
+            margin: 36px 0;
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .fact-box {
+            background: white;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 24px 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .fact-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        ul li { padding: 4px 0; }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            margin: 36px 0;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 36px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(139,69,19,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(139,69,19,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Charminar</h1>
+</header>
+
+<div class="container">
+
+    <div class="quote">The Jewel of Hyderabad, standing tall since 1591</div>
+
+    <p>The <span class="highlight">Charminar</span> is a historic and iconic monument located in the heart of Hyderabad, Telangana, India — one of the most recognized landmarks of the city and a symbol of its rich cultural heritage.</p>
+
+    <h2>History</h2>
+    <p><span class="highlight">Commissioned by:</span> Sultan Muhammad Quli Qutb Shah, the fifth ruler of the Qutb Shahi dynasty.</p>
+    <p><span class="highlight">Year of Construction:</span> 1591.</p>
+    <p><span class="highlight">Purpose:</span> Built to commemorate the end of a deadly plague and to mark the founding of Hyderabad as the new capital of the Qutb Shahi dynasty, shifting from Golconda.</p>
+    <p><span class="highlight">Name:</span> "Charminar" translates to "Four Towers" in Urdu, derived from the Persian words <em>Char</em> (four) and <em>Minar</em> (tower).</p>
+
+    <div class="divider"></div>
+
+    <h2>Architecture</h2>
+    <p><span class="highlight">Style:</span> A fine example of Indo-Islamic architecture with Persian influences.</p>
+    <p><span class="highlight">Structure:</span></p>
+    <ul>
+        <li>Four grand arches facing the four cardinal directions.</li>
+        <li>Four minarets, each 56 meters (184 feet) tall, divided into four stories.</li>
+        <li>A spiral staircase of 149 steps leads to the top floor.</li>
+        <li>The top floor houses a mosque — one of the oldest in Hyderabad.</li>
+    </ul>
+    <p><span class="highlight">Materials:</span> Granite, limestone, mortar, and pulverized marble.</p>
+    <p><span class="highlight">Design:</span> Arches and domes decorated with stucco and floral motifs showcasing Qutb Shahi-era craftsmanship.</p>
+
+    <div class="fact-box">
+        <h3>Architectural Marvel</h3>
+        <p>The four minarets are said to represent the first four caliphs of Islam, and each leans slightly outward — an intentional design to protect the main structure in case of collapse.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Significance</h2>
+    <ul>
+        <li><span class="highlight">Cultural Icon:</span> Often called the "Arc de Triomphe of the East," the Charminar is synonymous with Hyderabad's identity.</li>
+        <li><span class="highlight">Historical Importance:</span> A testament to the Qutb Shahi dynasty's architectural and cultural achievements.</li>
+        <li><span class="highlight">Religious Use:</span> The mosque on the top floor remains active for prayers to this day.</li>
+    </ul>
+
+    <h2>Interesting Facts</h2>
+    <ul>
+        <li>Originally built at the center of Hyderabad, with the city planned in a grid pattern around it.</li>
+        <li>A rumored underground tunnel connecting it to Golconda Fort has never been confirmed.</li>
+        <li>The monument is illuminated at night, creating a striking visual spectacle.</li>
+        <li>The surrounding <span class="highlight">Charminar Bazaar</span> is famous for Laad Bazaar (lacquer bangles) and Pather Gatti (pearls).</li>
+    </ul>
+
+    <div class="fact-box">
+        <h3>Marketplace Wonder</h3>
+        <p>The Charminar Bazaar is one of Hyderabad's oldest markets, renowned for pearls, bangles, and traditional Hyderabadi attire — especially the exquisite lacquer bangles of Laad Bazaar.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Visiting the Charminar</h2>
+    <p><span class="highlight">Best Time to Visit:</span> Early morning or late evening, when the weather is pleasant and the monument is beautifully lit.</p>
+    <p><span class="highlight">Nearby Attractions:</span> Mecca Masjid, Chowmahalla Palace, and Salar Jung Museum.</p>
+
+    <div class="quote">The Charminar remains a timeless symbol of Hyderabad's history, culture, and architectural grandeur</div>
+
+    <div class="btn-container">
+        <button class="btn" onclick="window.open('historic_places.html','_self')">Back</button>
+        <button class="btn" onclick="window.open('../PlanYourTrip.html','_self')">Plan Your Trip</button>
+    </div>
+
+</div>
+</body>
+</html>

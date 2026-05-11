@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Taj Mahal - A Monument of Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --accent: #d4af37;
+            --secondary: #D4A76A;
+            --light-bg: #f9f3e9;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1564507592333-c60657eea523') center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            margin-top: 32px;
+        }
+
+        p, ul { font-size: 1.05rem; }
+
+        .highlight {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .quote {
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-align: center;
+            margin: 36px 0;
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .fact-box {
+            background: white;
+            border-left: 5px solid var(--accent);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .fact-box h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        ul li { padding: 4px 0; }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            margin: 36px 0;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 36px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(139,69,19,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(139,69,19,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>The Taj Mahal</h1>
+</header>
+
+<div class="container">
+
+    <div class="quote">"A teardrop on the cheek of eternity" — Rabindranath Tagore</div>
+
+    <p>The <span class="highlight">Taj Mahal</span> is one of the most iconic monuments in the world, located in Agra, Uttar Pradesh, India.</p>
+
+    <h2>History</h2>
+    <p><span class="highlight">Commissioned by:</span> Mughal Emperor Shah Jahan.</p>
+    <p><span class="highlight">Purpose:</span> Built as a mausoleum for his wife Mumtaz Mahal, who died during childbirth in 1631.</p>
+    <p><span class="highlight">Construction Period:</span> 1632–1653 (approximately 22 years).</p>
+    <p><span class="highlight">Architects:</span> Ustad Ahmad Lahori is credited as the chief architect, supported by skilled artisans, calligraphers, and craftsmen from across the empire.</p>
+    <p><span class="highlight">Cost:</span> Estimated at 32 million rupees at the time — equivalent to billions today.</p>
+
+    <div class="divider"></div>
+
+    <h2>Architecture</h2>
+    <p><span class="highlight">Style:</span> A masterpiece blending Persian, Islamic, and Indian Mughal styles.</p>
+    <p><span class="highlight">Materials:</span> White marble from Makrana, Rajasthan, inlaid with lapis lazuli, jade, crystal, and turquoise.</p>
+    <p><span class="highlight">Complex Layout:</span></p>
+    <ul>
+        <li><span class="highlight">Main Mausoleum:</span> Central structure with a large "onion dome" and four smaller domes.</li>
+        <li><span class="highlight">Minarets:</span> Four minarets framing the mausoleum, each leaning slightly outward for structural safety.</li>
+        <li><span class="highlight">Gardens:</span> Charbagh-style layout divided into four quadrants by water channels.</li>
+    </ul>
+
+    <div class="fact-box">
+        <h3>Did You Know?</h3>
+        <p>The Taj Mahal changes color throughout the day — pinkish at dawn, white in the afternoon, and golden under moonlight.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Significance</h2>
+    <ul>
+        <li><span class="highlight">Symbol of Love:</span> Represents Shah Jahan's eternal devotion to Mumtaz Mahal.</li>
+        <li><span class="highlight">UNESCO World Heritage Site:</span> Designated in 1983 for its cultural and historical importance.</li>
+        <li><span class="highlight">New Seven Wonders:</span> Listed among the New Seven Wonders of the World.</li>
+    </ul>
+
+    <h2>Interesting Facts</h2>
+    <ul>
+        <li>The walls feature Quranic calligraphy using a style that appears uniform in size from ground level.</li>
+        <li>Shah Jahan reportedly planned a black marble mausoleum for himself across the Yamuna River — never built.</li>
+        <li>The Taj Mahal attracts 6–8 million visitors annually.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>Visiting the Taj Mahal</h2>
+    <p><span class="highlight">Best Time:</span> October to March; sunrise and sunset offer the most stunning views.</p>
+    <p><span class="highlight">Night Viewing:</span> Available on full moon nights and two days before/after (except Fridays and Ramadan). Advance booking required.</p>
+
+    <h2>Nearby Attractions</h2>
+    <ul>
+        <li><span class="highlight">Agra Fort:</span> A UNESCO World Heritage Site and former Mughal royal residence.</li>
+        <li><span class="highlight">Fatehpur Sikri:</span> Historic city built by Emperor Akbar, 40 km from Agra.</li>
+        <li><span class="highlight">Mehtab Bagh:</span> Garden complex with stunning views of the Taj across the Yamuna River.</li>
+    </ul>
+
+    <div class="quote">The Taj Mahal remains a timeless symbol of art, love, and history, drawing millions of visitors from around the globe.</div>
+
+    <div class="btn-container">
+        <button class="btn" onclick="window.open('historic_places.html','_self')">Back</button>
+        <button class="btn" onclick="window.open('../PlanYourTrip.html','_self')">Plan Your Trip</button>
+    </div>
+
+</div>
+</body>
+</html>

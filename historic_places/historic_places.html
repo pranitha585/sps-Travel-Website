@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HISTORICAL PLACES - India's Timeless Heritage</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            color: white;
+            font-family: sans-serif;
+            background-color: #1e0a06;
+            background-image:
+                linear-gradient(rgba(12, 4, 2, 0.68), rgba(18, 6, 3, 0.75)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 54px,
+                    rgba(8, 2, 1, 0.65) 54px,
+                    rgba(8, 2, 1, 0.65) 58px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 110px,
+                    rgba(8, 2, 1, 0.55) 110px,
+                    rgba(8, 2, 1, 0.55) 114px
+                ),
+                repeating-conic-gradient(
+                    rgba(160, 55, 25, 0.2) 0% 25%,
+                    rgba(130, 40, 15, 0.22) 25% 50%,
+                    rgba(175, 65, 30, 0.16) 50% 75%,
+                    rgba(110, 35, 12, 0.24) 75% 100%
+                ),
+                linear-gradient(155deg, #4a1508 0%, #2c0a04 45%, #3d1108 100%);
+            position: relative;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 35%, rgba(8, 2, 1, 0.7) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .back-btn-wrapper {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #f0a07a;
+            background: rgba(140, 45, 15, 0.3);
+            border: 1px solid rgba(210, 100, 55, 0.45);
+            border-radius: 30px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            background: rgba(170, 60, 20, 0.45);
+            transform: translateX(-3px);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 64px 20px 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h2 {
+            font-size: 48px;
+            letter-spacing: 10px;
+            font-family: Georgia, serif;
+            color: #f0a07a;
+            text-shadow:
+                0 0 40px rgba(220, 80, 30, 0.55),
+                0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(220, 110, 60, 0.85), transparent);
+            margin: 14px auto 0;
+        }
+
+        .page-description {
+            text-align: center;
+            font-size: 18px;
+            font-family: Georgia, serif;
+            font-weight: lighter;
+            letter-spacing: 0.5px;
+            line-height: 1.9;
+            color: rgba(230, 185, 160, 0.78);
+            max-width: 720px;
+            margin: 20px auto 44px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            padding: 0 40px 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            width: 370px;
+            height: 400px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(210, 90, 50, 0.35);
+            position: relative;
+            flex-shrink: 0;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.75),
+                0 0 0 1px rgba(150, 50, 20, 0.2),
+                inset 0 1px 0 rgba(240, 130, 80, 0.1);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 22px 52px rgba(0, 0, 0, 0.8),
+                0 0 32px rgba(210, 80, 35, 0.4),
+                0 0 0 1px rgba(220, 100, 55, 0.5);
+        }
+
+        .card:hover .card-body {
+            right: 0;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: brightness(0.88) sepia(0.2) saturate(1.15);
+            transition: filter 0.3s ease;
+        }
+
+        .card:hover .card-img {
+            filter: brightness(0.55) sepia(0.3) saturate(1.1);
+        }
+
+        .card-body {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: -100%;
+            position: absolute;
+            background: rgba(16, 5, 2, 0.93);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: right 0.5s ease;
+            border-left: 2px solid rgba(210, 90, 50, 0.35);
+        }
+
+        .card-title {
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: 700;
+            font-family: Georgia, serif;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            color: #f0a07a;
+            text-shadow: 0 0 14px rgba(220, 80, 35, 0.5);
+        }
+
+        .card-sub-title {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(220, 130, 90, 0.65);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .card-info {
+            font-size: 13px;
+            line-height: 1.75;
+            color: rgba(235, 205, 185, 0.88);
+            margin-bottom: 22px;
+        }
+
+        .card-btn {
+            color: #1a0500;
+            background: linear-gradient(135deg, #e8724a, #bf4020);
+            padding: 10px 22px;
+            width: fit-content;
+            border-radius: 5px;
+            border: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 12px rgba(200, 70, 30, 0.5);
+        }
+
+        .card-btn:hover {
+            background: linear-gradient(135deg, #f08560, #e8724a);
+            transform: scale(1.04);
+            box-shadow: 0 4px 18px rgba(230, 100, 55, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="back-btn-wrapper">
+        <a href="../explore_destin.html" class="back-btn">&#8592; Back</a>
+    </div>
+
+    <div class="page-header">
+        <h2>HISTORICAL PLACES</h2>
+        <div class="divider"></div>
+    </div>
+
+    <p class="page-description">
+        Historical places are locations of significant cultural, architectural, or historical importance — ancient monuments, buildings, and landmarks where the heritage of civilizations lives on. Here are some remarkable places you can visit:
+    </p>
+
+    <div class="cards-grid">
+
+        <div class="card">
+            <img src="https://media.architecturaldigest.com/photos/67acb9b0339bcbaaadeb91b5/3:2/w_5850,h_3900,c_limit/GettyImages-873536102.jpg" class="card-img" alt="Taj Mahal">
+            <div class="card-body">
+                <h1 class="card-title">TAJ MAHAL</h1>
+                <p class="card-sub-title">Agra, Uttar Pradesh</p>
+                <p class="card-info">Built in 1632 by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, this stunning white marble mausoleum in Agra is a symbol of eternal love and architectural brilliance.</p>
+                <button class="card-btn" onclick="window.open('tajmahal_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://backpackersunited.in/_next/image?url=https%3A%2F%2Fbpu-images-v1.s3.eu-north-1.amazonaws.com%2Fuploads%2F1721737562364_Charminar%202.jpg&w=1920&q=75" class="card-img" alt="Charminar">
+            <div class="card-body">
+                <h1 class="card-title">CHARMINAR</h1>
+                <p class="card-sub-title">Hyderabad, Telangana</p>
+                <p class="card-info">Built in 1591 by Muhammad Quli Qutb Shah to commemorate the founding of Hyderabad, the Charminar's iconic four minarets and grand arches define the city's skyline.</p>
+                <button class="card-btn" onclick="window.open('charminar_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://tripguides.in/images/places/red-fort.jpg" class="card-img" alt="Red Fort">
+            <div class="card-body">
+                <h1 class="card-title">RED FORT</h1>
+                <p class="card-sub-title">Delhi</p>
+                <p class="card-info">Built in 1648 by Shah Jahan in Delhi, the Red Fort's massive red sandstone walls and magnificent Mughal architecture have earned it UNESCO World Heritage status.</p>
+                <button class="card-btn" onclick="window.open('redfort_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://maharashtratourism.gov.in/wp-content/uploads/2024/11/ELLORA-CAVES-2.jpg" class="card-img" alt="Ellora Caves">
+            <div class="card-body">
+                <h1 class="card-title">ELLORA CAVES</h1>
+                <p class="card-sub-title">Maharashtra</p>
+                <p class="card-info">Dating to 600–1000 CE, these rock-cut temples in Maharashtra blend Hindu, Buddhist, and Jain artistry — a UNESCO World Heritage Site representing incredible craftsmanship.</p>
+                <button class="card-btn" onclick="window.open('ellora_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/b7/1f/31/qutab-minar.jpg?w=1200&h=-1&s=1" class="card-img" alt="Qutub Minar">
+            <div class="card-body">
+                <h1 class="card-title">QUTUB MINAR</h1>
+                <p class="card-sub-title">Delhi</p>
+                <p class="card-info">At 73 meters, the Qutub Minar is the world's tallest brick minaret. Built in the 12th century and a UNESCO World Heritage Site, it remains a symbol of medieval Indian architecture.</p>
+                <button class="card-btn" onclick="window.open('qutubminar_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg?cs=srgb&dl=pexels-sbsoneji-3581369.jpg&fm=jpg" class="card-img" alt="Hawa Mahal">
+            <div class="card-body">
+                <h1 class="card-title">HAWA MAHAL</h1>
+                <p class="card-sub-title">Jaipur, Rajasthan</p>
+                <p class="card-info">Built in 1799 by Maharaja Sawai Pratap Singh in Jaipur, this pink sandstone palace features 953 intricately designed windows that channeled cooling breezes for royal ladies.</p>
+                <button class="card-btn" onclick="window.open('hawamahal_historic.html','_self')">Explore</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

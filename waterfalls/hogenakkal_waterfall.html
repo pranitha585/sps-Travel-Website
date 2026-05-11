@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogenakkal Falls - Travel Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://i0.wp.com/trailsofinju.com/wp-content/uploads/2020/04/Hogenakkal-Falls-Niagara-of-India.jpeg?fit=1280%2C960&ssl=1') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        p { font-size: 1.05rem; }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-top: 36px;
+        }
+
+        .facts-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 24px 0;
+        }
+
+        .fact-item {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .fact-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        .season-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 20px 0 30px;
+        }
+
+        .season-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .season-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .activities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 20px 0 30px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 8px;
+            padding: 14px 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            flex: 1 1 240px;
+        }
+
+        .activity-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .attractions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 8px;
+            padding: 14px 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            flex: 1 1 180px;
+            font-size: 0.95rem;
+        }
+
+        .special-box {
+            background: #f0f7fb;
+            padding: 18px 22px;
+            margin: 32px 0;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .special-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            margin: 0 0 12px 0;
+            font-size: 1.2rem;
+        }
+
+        .special-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .special-box li {
+            margin: 8px 0;
+        }
+
+        .closing {
+            font-size: 1.15rem;
+            text-align: center;
+            margin-top: 36px;
+            color: var(--dark);
+            font-style: italic;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 44px 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Hogenakkal Falls</h1>
+        <div class="tagline">The "Niagara of India"</div>
+    </div>
+
+    <div class="container">
+
+        <p>Hogenakkal Falls is a stunning natural waterfall on the Kaveri (Cauvery) River, located on the border of Tamil Nadu and Karnataka. Often called the "Niagara Falls of India", it is famous for its rock formations, coracle rides, and therapeutic oil massages.</p>
+
+        <h2>Key Facts</h2>
+        <div class="facts-container">
+            <div class="fact-item"><span class="fact-title">Type:</span> Cataract & segmented waterfall (multiple channels)</div>
+            <div class="fact-item"><span class="fact-title">Height:</span> Approximately 20 meters (66 feet) — not very tall, but wide & powerful</div>
+            <div class="fact-item"><span class="fact-title">River:</span> Kaveri (Cauvery) River</div>
+            <div class="fact-item"><span class="fact-title">Location:</span> Dharmapuri district (Tamil Nadu) near Karnataka border (Chamarajanagar district)</div>
+        </div>
+
+        <h2>Best Time to Visit</h2>
+        <div class="season-container">
+            <div class="season-card">
+                <div class="season-title">Monsoon (August–November)</div>
+                Most spectacular, roaring waters
+            </div>
+            <div class="season-card">
+                <div class="season-title">Winter (December–February)</div>
+                Pleasant weather, good for coracle rides
+            </div>
+            <div class="season-card">
+                <div class="season-title">Summer (March–June)</div>
+                Low water levels, very hot
+            </div>
+        </div>
+
+        <h2>Things to Do at Hogenakkal Falls</h2>
+        <div class="activities">
+            <div class="activity-card">
+                <div class="activity-title">1. Coracle Boat Ride (Must-Do!)</div>
+                Round-shaped bamboo boats take you close to the falls. Cost: ₹300–500 per boat (fits 4–6 people). Best experience: early morning or late afternoon.
+            </div>
+            <div class="activity-card">
+                <div class="activity-title">2. Waterfall Bathing & Swimming</div>
+                Safe zones are marked; avoid strong currents.
+            </div>
+            <div class="activity-card">
+                <div class="activity-title">3. Visit Carbonatite Rocks</div>
+                Rare igneous rock formations found here.
+            </div>
+        </div>
+
+        <h2>Nearby Attractions</h2>
+        <div class="attractions">
+            <div class="attraction-card"><strong>Mettur Dam</strong> — Approximately 70 km away</div>
+            <div class="attraction-card"><strong>Yercaud Hill Station</strong> — About 120 km away</div>
+            <div class="attraction-card"><strong>Dharmapuri Temples</strong> — Kottai Kovil, Hogenakkal Temple</div>
+        </div>
+
+        <div class="special-box">
+            <h3>Why is Hogenakkal Famous?</h3>
+            <ul>
+                <li>One of India's most unique waterfall experiences</li>
+                <li>Best coracle boat ride in South India</li>
+                <li>Natural oil massages & fish spa</li>
+                <li>Featured in movies like "Raavan" (Mani Ratnam)</li>
+            </ul>
+        </div>
+
+        <p class="closing">A truly unique waterfall destination — where adventure meets natural healing!</p>
+
+        <div class="btn-container">
+            <button class="btn" onclick="window.open('waterfall_places.html','_self')">Back</button>
+            <button class="btn" onclick="window.open('../PlanYourTrip.html','_self')">Plan Your Trip</button>
+        </div>
+
+    </div>
+</body>
+</html>

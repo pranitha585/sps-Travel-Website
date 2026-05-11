@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPS Travel Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9a80cb;
+            --secondary: #4ecdc4;
+            --accent: #f6e355;
+            --dark: #292f36;
+            --light: #f7fff7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { overflow-x: hidden; background: var(--light); color: var(--dark); font-family: Poppins, sans-serif; }
+        h1, h2, h3, h4 { font-family: "Playfair Display", serif; }
+        a { color: inherit; text-decoration: none; }
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: grid;
+            place-items: center;
+            background: var(--dark);
+            transition: opacity 0.5s;
+        }
+
+        .preloader.fade-out { opacity: 0; pointer-events: none; }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        header {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.4s;
+        }
+
+        header.hide { transform: translateY(-100%); }
+        .header-container, nav ul, .user-menu, .testimonial-author, .footer-logo, .footer-contact p, .social-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: auto;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo, .footer-logo { gap: 10px; font-size: 1.8rem; font-weight: 700; }
+        .logo i { color: var(--accent); }
+        nav ul { gap: 1.6rem; list-style: none; }
+        nav a { position: relative; font-weight: 600; }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .user-menu {
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+        }
+
+        .user-avatar {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .user-name {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
+        button { border: 0; cursor: pointer; font: inherit; }
+        .logout-btn { background: transparent; color: white; font-size: 1rem; }
+
+        .hero, .parallax {
+            position: relative;
+            display: grid;
+            min-height: 100vh;
+            place-items: center;
+            padding: 90px 5% 40px;
+            background: center / cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+
+        .hero { background-image: url("https://img.freepik.com/premium-photo/beautiful-nature-landscape-sky-blue-sea-rock-sand-white-wave-beach-tropical-seaside-summer-travel-asia-koh-miang-island-mu-ko-similan-national-park-phang-nga-phuket-thailand_536080-662.jpg"); }
+
+        .parallax {
+            min-height: 400px;
+            background-image: url("https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1470&q=80");
+            background-attachment: fixed;
+        }
+
+        .hero::before, .parallax::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.48);
+        }
+
+        .hero-content, .parallax-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-content { animation: fadeInUp 1s ease forwards; }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            font-size: clamp(2.7rem, 7vw, 4.8rem);
+            line-height: 1.15;
+        }
+
+        .hero p, .parallax p {
+            font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+        }
+
+        section { padding: 5rem 5%; }
+        .featured { background: white; }
+        .testimonials { background: var(--gradient); color: white; }
+
+        .section-title {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            font-size: clamp(2rem, 4vw, 2.7rem);
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            left: 25%;
+            bottom: -10px;
+            width: 50%;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--gradient);
+        }
+
+        .section-title p, .card-content p, .footer-about p, .footer-contact p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .testimonials .section-title p {
+            color: rgba(255,255,255,0.82);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.09);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.16);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-image { height: 240px; overflow: hidden; }
+        .card:hover img { transform: scale(1.08); }
+        .card img { transition: transform 0.6s; }
+        .card-content { padding: 1.5rem; background: white; }
+        .card-content h3 { margin-bottom: 0.5rem; font-size: 1.5rem; }
+        .rating { color: var(--accent); }
+
+        .cta-button {
+            margin-top: 2rem;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.13);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .testimonial-author { gap: 1rem; }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+        }
+
+        .author-info p {
+            opacity: 0.82;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            position: relative;
+            padding: 4rem 5% 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            height: 10px;
+            background: var(--gradient);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-about p, .footer-contact p, .copyright { color: #aaa; }
+        .social-links { gap: 1rem; margin-top: 1.5rem; }
+
+        .social-links a, .back-to-top {
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+        }
+
+        .footer-contact h3, .footer-contact p { margin-bottom: 1rem; }
+        .footer-contact p { gap: 10px; }
+        .footer-contact i { color: var(--primary); }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover { transform: translateY(-5px); }
+
+        @media (max-width: 900px) {
+            .header-container {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            header { padding: 0.85rem 5%; }
+
+            .user-menu {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero { padding-top: 180px; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader"><div class="loader"></div></div>
+
+    <header id="header">
+        <div class="header-container">
+            <a href="HomePage.html" class="logo"><i class="fas fa-map-marked-alt"></i> SPS</a>
+
+            <nav>
+                <ul>
+                    <li><a href="HomePage.html">Home</a></li>
+                    <li><a href="explore_destin.html">Destinations</a></li>
+                    <li><a href="About_us.html">About</a></li>
+                    <li><a href="contact_us.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-menu" title="Signed in user">
+                <span class="user-avatar" id="userAvatar">U</span>
+                <span class="user-name" id="userName">User</span>
+                <button class="logout-btn" type="button" id="logoutBtn" title="Logout">
+                    <i class="fas fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Dream Destination</h1>
+                <p>Explore the world's most breathtaking places with our expertly crafted travel experiences.</p>
+            </div>
+        </section>
+
+        <section class="featured">
+            <div class="section-title">
+                <h2>Featured Destinations</h2>
+                <p>Discover our handpicked selection of India's most amazing places to visit.</p>
+            </div>
+
+            <div class="grid" id="destinations"></div>
+        </section>
+
+        <section class="parallax">
+            <div class="parallax-content">
+                <h2>Unforgettable Experiences</h2>
+                <p>Create memories that last a lifetime with our travel destinations.</p>
+                <button class="cta-button" type="button" onclick="location.href='explore_destin.html'">Explore Destinations</button>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-title">
+                <h2>Traveler Stories</h2>
+                <p>Hear what our customers say about their unforgettable experiences.</p>
+            </div>
+
+            <div class="grid" id="testimonials"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="HomePage.html" class="footer-logo"><i class="fas fa-map-marked-alt"></i> SPS</a>
+                <p>We create unforgettable travel experiences that connect you with beautiful destinations and cultures.</p>
+
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 611169 Amrita Nagar, Ettimadai, Coimbatore</p>
+                <p><i class="fas fa-phone-alt"></i> 9963230633</p>
+                <p><i class="fas fa-envelope"></i> spstravels@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</p>
+            </div>
+        </div>
+
+        <p class="copyright">&copy; 2025 SPS Adventures. All rights reserved.</p>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        const SIGN_IN_PAGE = "SignIn.html";
+        let user = null;
+
+        try {
+            user = JSON.parse(localStorage.getItem("spsUser") || "null");
+        } catch {
+            localStorage.removeItem("spsUser");
+        }
+
+        if (!user || !user.loggedIn) location.replace(SIGN_IN_PAGE);
+
+        const destinations = [
+            ["Popular", "https://www.shoreexcursionsgroup.com/img/tour/ASGOBEACHBEERTOUR-2.jpg", "Goa beach", "Goa", "Experience tropical beaches, vibrant culture, and relaxing coastal adventures.", 4.5],
+            ["Popular", "https://hblimg.mmtcdn.com/content/hubble/img/waterfallstiod/mmt/activities/m_Waterfalls_Jog_Waterfalls_Karnataka_p_640_640.jpg", "Jog Falls", "Jog Falls", "One of India's most spectacular waterfalls, located in Shimoga, Karnataka.", 5],
+            ["Popular", "https://travloger.in/wp-content/uploads/2025/04/iStock-1127001943s-scaled.webp", "Ooty hills", "Ooty", "A peaceful hill station with green valleys, cool weather, and scenic views.", 4.5],
+            ["New", "https://images.trvl-media.com/place/6135820/500e9c9c-b7f2-4847-9ad5-d82a1a9fa906.jpg", "Manali mountains", "Manali", "A beautiful Himachal hill station known for mountains, rivers, and adventure.", 4]
+        ];
+
+        const testimonials = [
+            ["https://static.vecteezy.com/system/resources/previews/065/309/706/non_2x/user-profile-icon-woman-avatar-for-social-media-blogs-forums-or-online-work-vector.jpg", "Bhavya", "Goa Explorer", "Golden beaches, vibrant vibes, and endless stories made Goa unforgettable."],
+            ["https://i.pinimg.com/736x/c5/4f/45/c54f450ab1de957b385a340d3605f3c9.jpg", "Swetha", "Ooty Explorer", "Ooty gave us fresh air, peaceful views, and a perfect break from city life."],
+            ["https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-26093.jpg", "Prabhavathi", "Solo Traveler", "Manali offered adventure, calm mornings, and views I will never forget."],
+            ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVQh0okgE1GtUPeJEP1MADpjh_dmZmpIWydg&s", "Pranitha", "Explorer", "Jog Falls was powerful, beautiful, and one of the best nature trips I have taken."]
+        ];
+
+        function stars(rating) {
+            const full = '<i class="fas fa-star"></i>'.repeat(Math.floor(rating));
+            const half = rating % 1 ? '<i class="fas fa-star-half-alt"></i>' : "";
+            const empty = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(rating));
+            return full + half + empty;
+        }
+
+        document.getElementById("destinations").innerHTML = destinations.map(([badge, image, alt, title, text, rating]) => `
+            <article class="card">
+                <div class="badge">${badge}</div>
+                <div class="card-image"><img src="${image}" alt="${alt}"></div>
+                <div class="card-content">
+                    <h3>${title}</h3>
+                    <p>${text}</p>
+                    <span class="rating">${stars(rating)}</span>
+                </div>
+            </article>
+        `).join("");
+
+        document.getElementById("testimonials").innerHTML = testimonials.map(([image, name, role, text]) => `
+            <article class="testimonial-card">
+                <p class="testimonial-text">${text}</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"><img src="${image}" alt="${name}"></div>
+                    <div class="author-info"><h4>${name}</h4><p>${role}</p></div>
+                </div>
+            </article>
+        `).join("");
+
+        document.getElementById("userName").textContent = user.name;
+        document.getElementById("userAvatar").textContent = user.name.charAt(0).toUpperCase();
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            user.loggedIn = false;
+            localStorage.setItem("spsUser", JSON.stringify(user));
+            location.href = SIGN_IN_PAGE;
+        });
+
+        window.addEventListener("load", () => {
+            setTimeout(() => document.querySelector(".preloader").classList.add("fade-out"), 600);
+        });
+
+        let lastScroll = 0;
+        const header = document.getElementById("header");
+        const backToTop = document.querySelector(".back-to-top");
+
+        window.addEventListener("scroll", () => {
+            const currentScroll = scrollY;
+            header.classList.toggle("hide", currentScroll > 100 && currentScroll > lastScroll);
+            backToTop.classList.toggle("active", currentScroll > 300);
+            lastScroll = currentScroll;
+        });
+
+        backToTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+    </script>
+</body>
+</html>
